@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+         
+         <changeSet id="1" author="jkomorek">
+         	<createTable tableName="ChallengeQuestion">
+         		<column name="id" type="int" autoIncrement="true">
+         			<constraints primaryKey="true" nullable="false"/>
+         		</column>
+         		<column name="answer" type="varchar(255)">
+         			<constraints nullable="false"/>
+         		</column>
+         		<column name="question" type="varchar(255)">
+         			<constraints nullable="false"/>
+         		</column>
+          		<column name="banklogin_id" type="int">
+         			<constraints nullable="false"/>
+         		</column>
+         	</createTable>
+          	
+         	<addUniqueConstraint constraintName="uq_challengequestion_banklogin_id_question" tableName="ChallengeQuestion" columnNames="banklogin_id, question"/>
+
+         	<addForeignKeyConstraint constraintName="fk_challengequestion_bank_id"
+  			  	baseTableName="ChallengeQuestion" baseColumnNames="banklogin_id"
+    			referencedTableName="BankLogin" referencedColumnNames="id"
+			/>
+			
+         </changeSet>
+ 
+</databaseChangeLog>
