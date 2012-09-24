@@ -1,5 +1,7 @@
 package com.bushidosoft.myfinances.entities;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class UserPassword {
 	@GeneratedValue
 	private long id;
 	private String password;
+	private Date passwordDate;
 	@OneToOne(cascade= {CascadeType.ALL})
 	private User user;
 	
@@ -30,6 +33,14 @@ public class UserPassword {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public Date getPasswordDate() {
+		return passwordDate;
+	}
+
+	public void setPasswordDate(Date passwordDate) {
+		this.passwordDate = passwordDate;
 	}
 
 	public String getPassword() {
